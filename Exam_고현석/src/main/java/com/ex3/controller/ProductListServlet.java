@@ -10,8 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/ProductListServlet")
 public class ProductListServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		request.getRequestDispatcher("ex3/productList.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

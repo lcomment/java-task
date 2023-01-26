@@ -16,6 +16,20 @@
 		<td>상품명</td>
 		<td>갯수</td>
 	</tr>
+	<%
+		Enumeration se = session.getAttributeNames();
+	 	while(se.hasMoreElements()){
+	 		String key = (String) se.nextElement();
+	 		Product p = (Product) session.getAttribute(key);
+	%>
+	<tr>
+		<th><%= p.getName() %></th>
+		<th><%= p.getId() %></th>
+		<th><%= p.getAmount() %></th>
+	</tr> 
+	<%
+		}
+	%>
 
 </table>
 <a href="ProductAddFormServlet">상품등록</a><br>	

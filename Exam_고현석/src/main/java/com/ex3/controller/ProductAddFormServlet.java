@@ -13,8 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class ProductAddFormServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		
+		request.getRequestDispatcher("/ex3/productAddForm.jsp").forward(request, response);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

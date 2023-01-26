@@ -18,7 +18,18 @@
 			<th>상품아이디</th>
 			<th>수량</th>
 		</tr>
-
+		<%
+			HashMap<String, Product> products = (HashMap<String, Product>) request.getAttribute("products");
+			for(String key : products.keySet()) {
+		%>
+		<tr>
+			<th><%= products.get(key).getName() %></th>
+			<th><%= products.get(key).getId() %></th>
+			<th><%= products.get(key).getAmount() %></th>
+		</tr>
+		<%
+			}
+		%>
 	</table>
 	<a href="productForm.jsp">상품 입력하기</a>
 </body>

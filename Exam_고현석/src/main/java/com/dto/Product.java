@@ -5,10 +5,10 @@ public class Product {
 	private String id;
 	private int amount;
 	
-	public Product(String name, String id, int amount) {
+	public Product(String id, String name, int amount) {
 		super();
-		this.name = name;
 		this.id = id;
+		this.name = name;
 		this.amount = amount;
 	}
 	public String getName() {
