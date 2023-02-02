@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.config.BoardMapper">
+
+	<!-- ID로 조회  -->
+	<select id="findById" parameterType="int" resultType="BoardResponse">
+		select no, title, author, content, DATE_FORMAT(writeday, '%y-%m-%d') writeday, readcnt
+		from board
+		where no = #{id}
+	</select>
+	
+	<!-- ID로 조회  -->
+	<select id="findBySearch" parameterType="hashmap" resultType="SimpleBoardResponse">
+		select no, title, author, DATE_FORMAT(writeday, '%y-%m-%d') writeday, readcnt
+		from board
+		<where>
+		    <if test="key == 'author'">
+		         author like concat('%', #{value}, '%')
+		    </if>
+		    <if test="key == 'title'">
+		        AND title like concat('%', #{value}, '%')
+		    </if>
+		</where>
+	</select>
+	
+	
+	<!-- 전체 조회 -->
+	<select id="findAll" resultType="SimpleBoardResponse">
+		select no, title, author, DATE_FORMAT(writeday, '%y-%m-%d') writeday, readcnt
+		from board
+		order by no
+	</select>
+	
+	<!-- 삽입 -->
+	<insert id="save" parameterType="BoardCreateRequest">
+		insert into board (title, author, content)
+		values (#{title}, #{author}, #{content})
+	</insert>
+	
+	<!-- 수정 -->
+	<update id="updateCnt" parameterType="BoardUpdateRequest">
+		update board
+		set title = #{title}, author = #{author}, content = #{content}, readcnt = #{readcnt}
+		where no = #{no} 
+	</update>
+	
+	<update id="update" parameterType="BoardUpdateRequest">
+		update board
+		set title = #{title}, author = #{author}, content = #{content}
+		where no = #{no} 
+	</update>
+	
+	<!-- 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from board
+		where no = #{no}
+	</delete>
+	
+	<!-- 전체 삭제 -->
+	<delete id="deleteAll">
+		delete from board
+	</delete>
+
+</mapper>
